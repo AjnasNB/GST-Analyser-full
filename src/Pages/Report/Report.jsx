@@ -12,51 +12,49 @@ const Report = ({ text }) => {
     event.preventDefault();
     setIsLoading(true);
 
-    const prompt = `
-      Analyze the following text: ${text} and create a detailed GST analysis report. The report should include the following sections:
-      
-      General Information
-      - Acknowledgement Number
-      - Date of filing
-      - PAN
-      - Name
-      - Address
+    const prompt = ` Analyze the following text: ${text} and create a detailed GST analysis report. The report should include the following sections:
     
-      Income Details
-      - Total Income
-    
-      Tax Details
-      - Taxable Income
-      - Book Profit under MAT (where applicable)
-      - Adjusted Total Income under AMT (where applicable)
-      - Net Tax Payable
-      - Interest and Fee Payable
-      - Total Tax, Interest, and Fee Payable
-      - Taxes Paid
-      - (+) Tax Payable / (-) Refundable
-    
-      Business Performance
-      - Current Year Business Loss (if any)
-      - Profit or Loss Statement
-    
-      Accreted Income & Tax Details
-      - Accreted Income as per Section 115TD
-      - Additional Tax Payable u/s 115TD
-      - Interest Payable u/s 115TE
-      - Additional Tax and Interest Payable
-      - Tax and Interest Paid
-      - (+) Tax Payable / (-) Refundable
-    
-      Filing Information
-      - Acknowledgement Number
-      - Date of Filing
-      - PAN
-      - Status
-      - Form Number
-      - Filed u/s
-      - e-Filing Acknowledgement Number
-      - Income Tax Return Submission Details (including IP address, verification method, and date)
-    `;
+    General Information
+    - Acknowledgement Number
+    - Date of filing
+    - PAN
+    - Name
+    - Address
+  
+    Income Details
+    - Total Income
+  
+    Tax Details
+    - Taxable Income
+    - Book Profit under MAT (where applicable)
+    - Adjusted Total Income under AMT (where applicable)
+    - Net Tax Payable
+    - Interest and Fee Payable
+    - Total Tax, Interest, and Fee Payable
+    - Taxes Paid
+    - (+) Tax Payable / (-) Refundable
+  
+    Business Performance
+    - Current Year Business Loss (if any)
+    - Profit or Loss Statement
+  
+    Accreted Income & Tax Details
+    - Accreted Income as per Section 115TD
+    - Additional Tax Payable u/s 115TD
+    - Interest Payable u/s 115TE
+    - Additional Tax and Interest Payable
+    - Tax and Interest Paid
+    - (+) Tax Payable / (-) Refundable
+  
+    Filing Information
+    - Acknowledgement Number
+    - Date of Filing
+    - PAN
+    - Status
+    - Form Number
+    - Filed u/s
+    - e-Filing Acknowledgement Number
+    - Income Tax Return Submission Details (including IP address, verification method, and date)`;
 
     try {
       const response = await fetch(import.meta.env.VITE_APP_API_ENDPOINT, {

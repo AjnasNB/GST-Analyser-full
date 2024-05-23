@@ -99,7 +99,7 @@ const Report = ({ text }) => {
       },
       x: 10,
       y: 10,
-      width: 575,
+      width: 522,
       windowWidth: 700
     });
   };

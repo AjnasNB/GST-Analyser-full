@@ -68,18 +68,14 @@ const Report = ({ text }) => {
       const data = await response.json();
       setResponseText(data.response);
       formatResponseText(data.response); // Format the response text on fetch
-      
     } catch (error) {
       console.error("An error occurred:", error);
     }
-    
     setIsLoading(false);
   };
 
   const formatResponseText = (text) => {
-    // Remove unwanted characters
     let cleanedText = text.replace(/[\*#]/g, '');
-    // Split text into lines and format each line
     cleanedText = cleanedText.split('\n').map(line => {
       const parts = line.split(':');
       if (parts.length === 2) {
@@ -97,10 +93,15 @@ const Report = ({ text }) => {
       format: "a4"
     });
 
-    doc.fromHTML(formattedText, 40, 40, {
-      width: 522, // A4 width 595.28 - (left + right margin)
+    doc.html(document.getElementById("formattedTextContainer"), {
+      callback: function (pdf) {
+        pdf.save('report.pdf');
+      },
+      x: 10,
+      y: 10,
+      width: 575,
+      windowWidth: 700
     });
-    doc.save('report.pdf');
   };
 
   return (
@@ -111,10 +112,12 @@ const Report = ({ text }) => {
         </button>
       </form>
       {formattedText && (
-        <div className={styles.responseText}>
-          <div dangerouslySetInnerHTML={{ __html: formattedText }} />
-          <button onClick={generatePDF} className={styles.button}>Download as PDF</button>
-        </div>
+        <div id="formattedTextContainer" className={styles.responseText} dangerouslySetInnerHTML={{ __html: formattedText }} />
+      )}
+      {formattedText && (
+        <button onClick={generatePDF} className={styles.button}>
+          Download as PDF
+        </button>
       )}
     </div>
   );

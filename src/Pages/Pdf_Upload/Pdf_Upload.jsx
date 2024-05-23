@@ -48,10 +48,10 @@ const Pdf_Upload = () => {
             <h4>Files</h4>
             <ul>{files}</ul>
           </section>
-          <section className={styles.container_view_text}>
+          {/* <section className={styles.container_view_text}>
             <h4>Extracted Text</h4>
             <p>{text}</p>
-          </section>
+          </section> */}
         </div>
 
         <div className={styles.right_side}>
